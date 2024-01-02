@@ -1,34 +1,38 @@
 import Container from "./Container";
 
-const ContactSection = () => {
-  //const ContactSection = ({ data }) => {
-  //const { title, description, email, phone, location } = data;
+interface ContactSectionProps {
+  data: {
+    title: string;
+    description: string;
+    email: string;
+    phone: string;
+    location: string;
+  };
+}
+
+
+  const ContactSection = ({ data }: ContactSectionProps) => {
+  const { title, description, email, phone, location } = data;
   return (
     <Container className="flex w-full flex-col my-16 items-center justify-center text-center">
       <div className="text-xl" id="contact">
         <h2 className="text-4xl font-bold text-center mb-8">
-          {/* {title} */}
-          Get in touch
+          {title}
         </h2>
         <p className="pb-8">
-          {/* {description} */}
-          If you have a project that you would like to discuss with me or just
-          want to chat, please feel free to contact me.
+          {description}
         </p>
         <span className="block mb-2">
           <EmailIcon />
-          {/* {email} */}
-          sesoetan@gmail.com
+          {email}
         </span>
         <span className="block mb-2">
           <PhoneIcon />
-          {/* {phone} */}
-          +1 226 899 3327
+          {phone}
         </span>
         <span className="block mb-2">
           <LocationIcon />
-          {/* {location} */}
-          Waterloo, Ontario, Canada
+          {location}
         </span>
       </div>
     </Container>

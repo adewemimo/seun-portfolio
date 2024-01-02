@@ -1,23 +1,21 @@
 import Image, { StaticImageData } from "next/image";
-import userImage from "../../../public/img/profile_pic.jpeg";
 
-const Testimonials = () => {
-  const testimonial_cards = [
-    {
-      image: userImage,
-      name: "John Doe",
-      comment:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
-    },
-  ];
-  //const Testimonials = ({ data }) => {
-  //const { title, testimonial_cards } = data;
+interface TestimonialsCards {
+  image: { filename: StaticImageData };
+  name: string;
+  comment: string;
+}
+type TestimonialsProps = {
+  data: {
+    title: string;
+    testimonial_cards: TestimonialsCards[];
+  };
+};
+const Testimonials = ({ data }: TestimonialsProps) => {
+  const { title, testimonial_cards } = data;
   return (
     <section className="px-52 bg-zinc-950 pt-24 pb-32">
-      <h2 className="text-4xl font-bold text-center mb-20">
-        {/* {title} */}
-        What people are saying
-      </h2>
+      <h2 className="text-4xl font-bold text-center mb-20">{title}</h2>
       <div className="grid gap-10 lg:grid-cols-2 xl:grid-cols-2">
         {testimonial_cards.map((t) => (
           <TestimonialCard data={t} key={t.name} />
@@ -30,11 +28,7 @@ const Testimonials = () => {
 export default Testimonials;
 
 type TestimonialCardProps = {
-  data: {
-    image: StaticImageData;
-    name: string;
-    comment: string;
-  };
+  data: TestimonialsCards;
 };
 
 const TestimonialCard = ({ data }: TestimonialCardProps) => {
@@ -44,7 +38,7 @@ const TestimonialCard = ({ data }: TestimonialCardProps) => {
       <div className="flex flex-col justify-between w-full h-full px-5 rounded-2xl py-5 bg-neutral-800">
         <p className="text-xl leading-normal ">{comment}</p>
 
-        <Avatar image={image} name={name} />
+        <Avatar image={image.filename} name={name} />
       </div>
     </div>
   );

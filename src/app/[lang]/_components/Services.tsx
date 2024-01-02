@@ -1,31 +1,26 @@
-const Services = () => {
-  //const Services = ({ data }) => {
-  //const { title, service_cards } = data;
-  const service_cards = [
-    {
-      title: "Web and App Development",
-      subtitle: "Frontend & Backend",
-      price: "50 cad/hour",
-      description:
-        "I am a full stack web developer. I can build your website from scratch or work on your existing website/software. Technology stack are React, Next.js, Node.js, Express.js, MongoDB, MySQL, PostgreSQL, Firebase, AWS, Heroku, Netlify, Vercel, Tailwind CSS, Bootstrap, Material UI, HTML, CSS, JavaScript, TypeScript, Python, WordPress, Wix, GraphQL, Storyblok, Prismic, and more.",
-    },
-    {
-      title: "Mobile Development",
-      subtitle: "Android, iOS & Hybrid",
-      price: "50 cad/hour",
-      description:
-        "I can build your mobile app from scratch or work on your existing mobile app. verstile in the use of React Native.",
-    },
-  ];
+type ServicesCards = {
+  title: string;
+  subtitle: string;
+  price: string;
+  description: string;
+};
+
+type ServicesProps = {
+  data: {
+    title: string;
+    service_cards: ServicesCards[];
+  };
+};
+const Services = ({ data }: ServicesProps) => {
+  const { title, service_cards } = data;
   return (
     <section className="pb-32 pt-24">
       <h2 className="text-4xl font-bold text-center mb-20">
-        {/* {title} */}
-        Services
+        {title}
       </h2>
       <div className="py-4 px-4 mx-auto max-w-screen-xl">
         <div className="space-y-8 lg:grid lg:grid-cols-2 sm:gap-6 xl:gap-10 lg:space-y-0 place-items-center items-stretch">
-          {service_cards.map((s) => (
+          {service_cards.map((s: ServicesCards) => (
             <ServiceCard data={s} key={s.title} />
           ))}
         </div>
@@ -37,12 +32,7 @@ const Services = () => {
 export default Services;
 
 type ServiceCardProps = {
-  data: {
-    title: string;
-    subtitle: string;
-    price: string;
-    description: string;
-  };
+  data: ServicesCards;
 };
 
 const ServiceCard = ({ data }: ServiceCardProps) => {
