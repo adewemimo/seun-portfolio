@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+//const fetch = require('node-fetch');
 const fs = require('fs');
 
 async function fetchStoryblokContent(version, token, lang) {
