@@ -11,7 +11,7 @@ async function fetchStoryblokContent(version, token, lang) {
 
 // Replace these with your actual Storyblok version, token, and language
 const version = draft;
-const token = 4RWgsQjWWNFCzfqgaSO2PAtt;
+const token = "4RWgsQjWWNFCzfqgaSO2PAtt";
 const lang = en;
 
 fetchStoryblokContent(version, token, lang).catch(console.error);
