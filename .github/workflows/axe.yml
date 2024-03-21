@@ -22,6 +22,9 @@ jobs:
     - name: Fetch latest content from Storyblok
       run: |
         node fetch-storyblok-content.js
+      # env:
+      #   STORYBLOK_TOKEN: ${{ secrets.STORYBLOK_TOKEN }}
+      #   STORYBLOK_VERSION: ${{ secrets.STORYBLOK_VERSION }}
   
     - name: Build
       run: npm run build --if-present
