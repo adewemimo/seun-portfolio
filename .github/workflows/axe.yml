@@ -8,13 +8,24 @@ jobs:
   axe:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js 18.x
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup node - Use Node.js 18.x
       uses: actions/setup-node@v3
       with:
         node-version: 18.x
-    - run: npm ci
-    - run: npm run build --if-present
+
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Fetch latest content from Storyblok
+      run: |
+        node fetch-storyblok-content.js
+  
+    - name: Build
+      run: npm run build --if-present
+
     - run: npm start & npx wait-on http://localhost:3000
     - name: Run axe
       run: |
