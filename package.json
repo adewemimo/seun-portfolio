@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "fetch-storyblok": "node fetch-storyblok-content.js",
+    "build": "npm run fetch-storyblok && next build",
     "start": "next start",
     "lint": "next lint"
   },

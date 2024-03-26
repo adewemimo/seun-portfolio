@@ -10,6 +10,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+    
+    - name: Set up ChromeDriver
+      uses: nanasess/setup-chromedriver@v2
+      with:
+        chromedriver-version: '122.0.6261.128'
 
     - name: Setup node - Use Node.js 18.x
       uses: actions/setup-node@v3
@@ -22,6 +27,9 @@ jobs:
     - name: Fetch latest content from Storyblok
       run: |
         node fetch-storyblok-content.js
+      # env:
+      #   STORYBLOK_TOKEN: ${{ secrets.STORYBLOK_TOKEN }}
+      #   STORYBLOK_VERSION: ${{ secrets.STORYBLOK_VERSION }}
   
     - name: Build
       run: npm run build --if-present
