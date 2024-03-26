@@ -12,22 +12,9 @@ jobs:
       uses: actions/checkout@v3
     
     - name: Set up ChromeDriver
-      run: |
-        CHROME_VERSION=$(google-chrome --version | awk '{print $3}' | sed 's/\..*//')
-        CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
-        echo "Chrome version: $CHROME_VERSION"
-        echo "ChromeDriver version: $CHROMEDRIVER_VERSION"
-        # Verify if the ChromeDriver version exists
-        if curl -sS --head --request GET "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip" | grep "200 OK" > /dev/null; then
-          echo "ChromeDriver version exists, downloading..."
-          curl -sS -o chromedriver.zip http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver.zip
-          sudo mv chromedriver /usr/local/bin/chromedriver
-          sudo chmod +x /usr/local/bin/chromedriver
-        else
-          echo "ChromeDriver version does not exist, please check the version."
-          exit 1
-        fi
+      uses: nanasess/setup-chromedriver@v2
+      with:
+        chromedriver-version: '122.0.6261.128'
 
     - name: Setup node - Use Node.js 18.x
       uses: actions/setup-node@v3
